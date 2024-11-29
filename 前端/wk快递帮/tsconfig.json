@@ -23,7 +23,7 @@
   },
   "include": [
     "./**/*.ts"
-, "miniprogram/pages/index/index.js", "miniprogram/pages/books/books.js", "miniprogram/utils/Login.js", "miniprogram/pages/me/me.js", "miniprogram/pages/server/bookup.js", "miniprogram/pages/myserver/bookup_server.js", "miniprogram/pages/myserver/network_server/network_server.js" ],
+, "miniprogram/pages/index/index.js", "miniprogram/pages/books/books.js", "miniprogram/utils/Login.js", "miniprogram/pages/me/me.js", "miniprogram/pages/server/bookup.js", "miniprogram/pages/myserver/bookup_server.js", "miniprogram/pages/myserver/network_server/network_server.js", "miniprogram/pages/about_new/about_new.js" ],
   "exclude": [
     "node_modules"
   ]

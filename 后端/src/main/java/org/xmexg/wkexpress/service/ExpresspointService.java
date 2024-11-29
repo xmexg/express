@@ -16,10 +16,6 @@ public class ExpresspointService {
     public String[] getAll(){
         List<Expresspoint> expresspoints = expresspointDao.getAll();//获取所有快递点,并且该list只有一列
         //list转数组
-        String[] expresspoint = new String[expresspoints.size()];
-        for (int i = 0; i < expresspoints.size(); i++) {
-            expresspoint[i] = expresspoints.get(i).getPoint();
-        }
-        return expresspoint;
+        return expresspoints.stream().map(Expresspoint::getPoint).toArray(String[]::new);
     }
 }

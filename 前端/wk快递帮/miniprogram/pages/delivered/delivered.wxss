@@ -1,1 +1,39 @@
 /* pages/delivered/delivered.wxss */
+/* 派送员看自己已派送，已完成页面 */
+#main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+#title{
+  font-size: larger;
+}
+
+#list{
+  width: 90%;
+}
+
+.ing{
+  background: #57c5ec;
+}
+
+.finish{
+  background: #b1bfca94;
+}
+
+.ed{
+  color: green;
+}
+
+.list_view{
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.order_top{
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,5 +1,8 @@
 package org.xmexg.wkexpress.entity;
 
+import lombok.Getter;
+
+@Getter
 public class Expresspoint {
     private String point;
 
@@ -7,7 +10,4 @@ public class Expresspoint {
         return point;
     }
 
-    public String getPoint() {
-        return point;
-    }
 }

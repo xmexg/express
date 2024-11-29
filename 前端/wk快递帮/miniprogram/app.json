@@ -10,12 +10,14 @@
     "pages/booked/booked",
     "pages/delivering/delivering",
     "pages/delivered/delivered",
-    "pages/about/about"
+    "pages/about/about",
+    "pages/about_new/about_new",
+    "pages/manage/manage"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#00aeec",
-    "navigationBarTitleText": "阿超跑腿",
+    "navigationBarTitleText": "校园跑腿",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {

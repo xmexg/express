@@ -2,15 +2,15 @@
 // const wxLogin = require('./utils/Login')
 App<IAppOption>({
   globalData: {
-    serverip: 'http://192.168.47.23:8081',
+    serverip: 'http://127.0.0.1:8081',
   },
   onLaunch() {
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs')
-    logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-    console.log("token的值:"+wx.getStorageSync("token"))
-    if(wx.getStorageSync("token") == ""){
+    let token = wx.getStorageSync("token")
+    console.log("token的值:", token)
+    if(token == ""){
       console.log("开始登录")
       wxLogin()
     }    

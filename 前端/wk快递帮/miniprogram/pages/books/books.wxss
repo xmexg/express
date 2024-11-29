@@ -1,4 +1,9 @@
 /* pages/books/books.wxss */
+.rowstyle{
+  display: flex;
+  flex-direction: row;
+}
+
 #top{
   position: fixed;
   height: 20vh;
@@ -17,7 +22,7 @@
   background: rgba(245, 243, 242, 0.5);
   border-radius: 10px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;

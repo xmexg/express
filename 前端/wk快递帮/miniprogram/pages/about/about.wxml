@@ -1,19 +1,3 @@
 <!--pages/about/about.wxml-->
 <view id="main">
-  <text class="title">关于我们</text>
-  <text class="q">该程序是做什么的?</text>
-  <text class="a">这是由wk在校学生建立的校园跑腿平台,目前主要负责代取快递,以后可能会加入代打印,代送外卖等服务</text>
-  <text class="q">为什么取名叫"阿超跑腿"?</text>
-  <text class="a">曾经有一位名为"超"的学生(wxid_xikjqf9jtxsu22),在学校里兼职跑腿,取名叫"阿超跑腿",以前,有什么需求通过腾讯文档或加他好友告诉他,但这样终究不便捷,如今,他已有属于自己的微信小程序了</text>
-  <text class="q">我们是谁?</text>
-  <text class="a">和大家一样,我们也是wk的在校大学生</text>
-  <text class="q">关于渗透测试?</text>
-  <text class="a">该微信小程序允许善意的渗透测试!如若发现漏洞,请联系我们!该项目的每一行代码,包括服务器部署,均由名为"vina"的学生(Do0OO0oD)独自完成,程序难免会有疏漏,该微信小程序允许善意的渗透测试!如若发现漏洞,请联系我们!</text>
-  <text class="q">联系我们</text>
-  <view id="contact" class="a">
-    <text id="contact_note_1">对我们的服务有问题,请联系wxid_xikjqf9jtxsu22(绿色二维码)</text>
-    <text id="contact_note_2">对小程序代码有问题,请联系Do0OO0oD(粉色二维码)</text>
-    <image class="contact_img" src="/static/image/contact/1.jpg" mode="aspectFit" show-menu-by-longpress="true"></image>
-    <image class="contact_img" src="/static/image/contact/2.jpg" mode="aspectFit" show-menu-by-longpress="true"></image>
-  </view>
 </view>

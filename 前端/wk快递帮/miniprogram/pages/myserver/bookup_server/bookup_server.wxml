@@ -1,10 +1,24 @@
 <view id="content">
   <text id="title">代取快递</text>
+  <view wx:if="{{UnpaidOrder.length!=0}}" id="UnpaidOrder_div">
+    <view id="UnpaidOrder_div_cen">
+      <view id="UnpaidOrder_div_cen_title">
+        支付提醒
+      </view>
+      <view id="UnpaidOrder_div_content">
+        发现存在未支付订单, 请先支付
+      </view>
+      <view id="UnpaidOrder_div_choose">
+        <button type="primary" bind:tap="UnpaidOrder_pay">支付</button>
+        <button bind:tap="UnpaidOrder_cancel">取消</button>
+      </view>
+    </view>
+  </view>
   <view id="content_lay">
     <form bindsubmit="formSubmit" bindreset="formReset" id="orderform">
       <ul>
         <li>
-          <text>快递点：</text>
+          <text>快递点：<text bind:tap="get_point">点我刷新</text></text>
           <picker name="pickup" bindchange="Pick" value="{{PickListIndex}}" range="{{PickList}}">
             <view class="usrInput">{{PickList[PickListIndex]}}</view>
           </picker>
@@ -31,14 +45,15 @@
         </li>
         <li>
           <text>取货价格确认：</text>
-          <text id="priceinfo">(小件1元,中件1.5-2.5元,大件3元+)</text>
+          <text id="priceinfo">极小件(一张A4纸/证件/信封)0.5元\n小件(一个充电宝)1元\n中件(一双鞋)2.5元\n大件和重件(收纳箱/普通折叠床上桌)5元\n极大极重件(木制/金属可拆卸落地桌)10+元\n价格由用户确定,派送员可选择是否接单</text>
           <radio-group name="ordertype" class="usrInput" id="ordertype">
             <label>
               <radio value="1" checked="true">直接付款</radio>
+              <input type="digit" name="orderamount" placeholder="期望价格(元),最终由派送员决定"></input>
             </label>
             <text>\n</text>
             <label>
-              <radio value="0">确认价格后付款</radio>
+              <radio value="0">交易后付款</radio>
             </label>
           </radio-group>
         </li>

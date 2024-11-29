@@ -1,0 +1,17 @@
+<view id="main">
+  <view id="title"><text>用户管理</text></view>
+  <view id="changeview">
+    <view>
+      <text>更改: </text>
+      <input id="openidinput" type="number" placeholder="输入用户的openid" bindinput="bindKeyInput"/>
+      <text>为: </text>
+      <picker bindchange="bindPickerChange" value="{{userType_index}}" range-key="name" range="{{userType_list}}">
+        <text>{{userType_list[userType_index].name}}</text>
+      </picker>
+    </view>
+    <view>
+      <button type="primary" bind:tap="change_userType">确定更改</button>
+    </view>
+  </view>
+  <view id="DM_list" wx:if="{{false}}">在职用户列表</view>
+</view>

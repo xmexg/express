@@ -102,4 +102,9 @@ public class UserService {
         }
     }
 
+    // 修改用户类型
+    public boolean changeUserType(String openid, int type){
+        return userDao.changeUserType(openid, type) > 0;
+    }
+
 }

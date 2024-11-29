@@ -16,7 +16,7 @@ public class Express {
     @Autowired
     private ExpresspointService expresspointService;
 
-    //获取快递点
+//    获取快递点
     @RequestMapping("/point")
     public String[] point(){
         if (WkexpressApplication.tempData.expresspoint != null) {
@@ -26,11 +26,17 @@ public class Express {
         }
     }
 
-    //更新快递点
-    @RequestMapping("/updatepoint")
+//    更新快递点
+//    @RequestMapping("/updatepoint")
     public String[] updatepoint(){
         String[] exp = expresspointService.getAll();
         WkexpressApplication.tempData.expresspoint = exp;
         return exp;
     }
+
+    // 获取快递点
+//    @RequestMapping("/point")
+//    public String[] point() {
+//        return expresspointService.getAll();
+//    }
 }

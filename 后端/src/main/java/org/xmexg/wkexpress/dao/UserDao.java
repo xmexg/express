@@ -31,4 +31,8 @@ public interface UserDao {
     //更新用户信息,不建议使用
     @Update("update userlist set user_type = #{user_type},user_session_key = #{user_session_key},user_openid = #{user_openid},user_token = #{user_token},user_creattime = #{user_creattime} where user_id = #{user_id}")
     public void updateUser(User user);
+
+    // 更改用户类型
+    @Update("update userlist set user_type = #{type} where user_openid = #{openid}")
+    int changeUserType(String openid, int type);
 }

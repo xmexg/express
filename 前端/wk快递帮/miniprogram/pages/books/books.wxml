@@ -1,7 +1,10 @@
 <!--pages/books/books.wxml-->
 <view id="top">
   <view id="top_con">
-    <text>正在施工...</text>
+    <text wx:if="{{usrty==2}}">您可看到属于您的订单</text>
+    <text wx:if="{{usrty==1}}">您可看到所有未接单的订单</text>
+    <text wx:if="{{usrty==9}}">您可看到所有未接单的订单</text>
+    <text>现有订单数量:{{orders.length}}</text>
   </view>
 </view>
 
@@ -17,8 +20,11 @@
         <text class="lipickinfo">{{item.pickname}}({{item.pickcode}})</text>
         <text class="lipeopleinfo">{{item.name}}({{item.phone}})</text>
         <text class="linote">{{item.note}}</text>
-        <input class="liinputprice" type="digit" placeholder="请设置取货价格" maxlength="3" confirm-type="done" data-chooseorderid="{{item.orderid}}" data-chooseorderloc="{{idx}}" bindinput="setDeliveryOrderPrice" />
-        <button class="lisubmit" type="primary" form-type="submit" data-deliverorderid="{{item.orderid}}" data-deliverorderprice="{{item.deliverorderprice}}" bindtap="DeliveryOrder">接取订单</button>
+        <text></text>
+        <text wx:if="{{item.changepriceable==0}}">用户设置价格(元,不可变):</text>
+        <text wx:if="{{item.changepriceable==1}}">用户期望价格(元,可修改):</text>
+        <input class="liinputprice" type="digit" placeholder="请设置取货价格" min="0.1" confirm-type="done" data-chooseorderid="{{item.orderid}}" data-chooseorderloc="{{idx}}" bindinput="setDeliveryOrderPrice" disabled="{{item.changepriceable==0}}" value="{{item.orderamount}}"/>
+        <button class="lisubmit" type="primary" form-type="submit" data-deliverorderid="{{item.orderid}}" data-deliverorderprice="{{item.orderamount}}" bindtap="DeliveryOrder" wx:if="{{usrty==1 || usrty==9}}">接取订单</button>
         <text class="litime">{{item.ordertime}}</text>
       </li>
     </ul>

@@ -1,2 +1,24 @@
 <!--pages/delivered/delivered.wxml-->
-<text>pages/delivered/delivered.wxml</text>
+<!-- 派送员查看自己的派送订单 -->
+<view id="main">
+  <text id="title">我的派送 ({{orders.length}})</text>
+  <view id="list">
+    <view wx:for="{{orders}}" wx:key="orderid" class="{item.status<10 ? 'ing': 'finish'}">
+      <view class="list_view">
+        <view>
+          <view class="order_top"><text>序号:{{index+1}}</text><text>{{item.orderid}}</text><text class="{{item.status==11? 'ed':'finish'}}">{{item.status_text}}</text></view>
+          <view class="order_top"><text>包裹名:{{item.name}}</text><text>取货码:{{item.pickcode}}</text></view>
+          <view>联系方式:{{item.phone}}</view>
+          <view>From: {{item.pickup}}</view>
+          <view>To: {{item.pickdown}}</view>
+          <view>下单时间:{{item.ordertime_text}}</view>
+          <view>价格:{{item.orderamount}}</view>
+          <view>支付时间:{{item.paytime_text}}</view>
+          <view>备注:{{item.note}}</view>
+          <button wx:if="{{item.status<10}}" type="warn" data-orderid="{{item.orderid}}" bindtap="order_cancel">取消派送</button>
+          <button wx:if="{{item.status<10}}" type="default" data-orderid="{{item.orderid}}" bindtap="finish_cancel">完成派送</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

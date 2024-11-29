@@ -1,0 +1,35 @@
+#main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  /* background: chartreuse; */
+}
+
+#main>view{
+  margin: 5px;
+}
+
+#title{
+  font-size: larger;
+  font-weight: bolder;
+}
+
+#changeview{
+  display: flex;
+  flex-direction: column;
+}
+
+#changeview>view{
+  display: flex;
+  flex-direction: row;
+}
+
+#openidinput{
+}
+
+#DM_list{
+  flex: 1;
+  width: 90%;
+}

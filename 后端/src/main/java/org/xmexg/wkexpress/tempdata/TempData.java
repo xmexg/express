@@ -3,6 +3,8 @@ package org.xmexg.wkexpress.tempdata;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.xmexg.wkexpress.service.ExpresspointService;
 
+import java.util.Arrays;
+
 /**
  * 这些数据在启动时加载,然后不变
  */
@@ -35,9 +37,10 @@ public class TempData {
     public int Usertype_Admin = 9;//管理员的账户类型
 
     //接单部分
-    public float Order_amount_max = 10;//订单价格最大值
+    public float Order_amount_max = 50;//订单价格最大值
     public float Order_amount_min = 1;//订单价格最小值
     public String Deliveryorder_Success = "接单成功";
     public String Deliveryorder_Fail = "接单失败";
-    public String Order_amount_error = "订单金额错误";
+    public String Order_amount_error = "订单金额无效";
+
 }

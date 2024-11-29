@@ -1,0 +1,5 @@
+<view id="main">
+  <text class="title">关于我们</text>
+  <text class="q">该程序是做什么的?</text>
+  <text class="a">我的结课作业：基于springboot + mysql + 微信 开发的校园快递代取微信小程序</text>
+</view>

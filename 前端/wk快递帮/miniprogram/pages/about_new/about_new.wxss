@@ -1,0 +1,62 @@
+/* pages/about/about.wxss */
+#main{
+  width: 100vw;
+  min-height: 100vh;
+  background: #ebfffa;
+}
+
+view text{
+  width: 90%;
+  display: block;
+  position: relative;
+  left: 5%;
+}
+
+.title{
+  font-size: 1.3em;
+  text-align: center;
+  text-shadow: 2px 2px #ffffff;
+  letter-spacing: 0.2em;
+  font-weight: bold;
+  color: #1e2732;
+}
+
+.q{
+  color: #6741d9;
+  margin: 5px 0 0 0;
+  text-indent: 1em;
+  background: #eae6f7;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.a{
+  color: #00aeec;
+  margin: 0 0 5px 0;
+  background: #def6ff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#contact{
+  display: block;
+  position: relative;
+  left: 5%;
+  width: 90%;
+}
+
+#contact_note_1{
+  text-indent: 1em;
+  display: block;
+  color: #35b171;
+}
+
+#contact_note_2{
+  text-indent: 1em;
+  display: block;
+  color: #c09fb0;
+}
+
+.contact_img{
+  width: 50%;
+}

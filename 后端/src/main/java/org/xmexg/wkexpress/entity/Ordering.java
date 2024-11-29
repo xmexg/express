@@ -14,7 +14,7 @@ public class Ordering {
     private Timestamp ordertime;
     private int ordertype;
     private int orderpricecon;
-    private float orderamount;
+    private String orderamount;
     private String pickup;
     private String pickdown;//需要检验合法性
     private String pickcode;//需要检验合法性
@@ -25,6 +25,8 @@ public class Ordering {
     private String shipper;
     private String payid;
     private Timestamp paytime;
+    private int status; // 订单状态
+    private int changepriceable; //能否改变价格，1能，0否
 
     public String getOpenid() {
         return openid;
@@ -66,11 +68,11 @@ public class Ordering {
         this.orderpricecon = orderpricecon;
     }
 
-    public float getOrderamount() {
+    public String getOrderamount() {
         return orderamount;
     }
 
-    public void setOrderamount(float orderamount) {
+    public void setOrderamount(String orderamount) {
         this.orderamount = orderamount;
     }
 
@@ -154,7 +156,23 @@ public class Ordering {
         this.paytime = paytime;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getChangepriceable() {
+        return changepriceable;
+    }
+
+    public void setChangepriceable(int changepriceable){
+        this.changepriceable=changepriceable;
+    }
+
     public String toString(){
-        return "openid:"+openid+" orderid:"+orderid+" ordertime:"+ordertime+" ordertype:"+ordertype+" orderpricecon:"+orderpricecon+" orderamount:"+orderamount+" pickup:"+pickup+" pickdown:"+pickdown+" pickcode:"+pickcode+" pickname:"+pickname+" name:"+name+" phone:"+phone+" note:"+note+" shipper:"+shipper+" payid:"+payid+" paytime:"+paytime;
+        return "openid:"+openid+" orderid:"+orderid+" ordertime:"+ordertime+" ordertype:"+ordertype+" orderpricecon:"+orderpricecon+" orderamount:"+orderamount+" pickup:"+pickup+" pickdown:"+pickdown+" pickcode:"+pickcode+" pickname:"+pickname+" name:"+name+" phone:"+phone+" note:"+note+" shipper:"+shipper+" payid:"+payid+" paytime:"+paytime+" status:"+status+" changepriceable:"+changepriceable;
     }
 }

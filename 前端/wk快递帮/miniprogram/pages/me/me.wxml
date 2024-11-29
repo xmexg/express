@@ -1,14 +1,23 @@
 <!--pages/me/me.wxml-->
 <view id="top">
   <view id="top_con">
-    <text class="top_con_form" wx:for="{{mydata}}" wx:key="id"><text>{{item.name}}:{{item.value}}</text></text>
+    <text class="top_con_form" wx:for="{{mydata_user}}" wx:key="id"><text>{{item.name}}:{{item.value}}</text></text>
+    <text class="top_con_form" wx:for="{{mydata_woker}}" wx:key="id" wx:if="{{user_type!=2}}"><text>{{item.name}}:{{item.value}}</text></text>
   </view>
 </view>
 <view id="context">
   <view id="content_list">
-    <ul wx:for="{{mydata}}" wx:key="id">
-      <li class="content_list_li">{{item.name}}</li>
+    <view>id:{{user_id}} - openid:{{user_openid}} - (<text wx:if="{{user_type==1}}">配送员</text><text wx:if="{{user_type==2}}">普通用户</text><text wx:if="{{user_type==9}}">管理员</text>)</view>
+    <!-- 普通用户显示的 -->
+    <ul wx:for="{{mydata_user}}" wx:key="id">
+      <li class="content_list_li" bind:tap="goto_orderBook">{{item.name}}</li>
     </ul>
+    <!-- 派送员额外显示的 -->
+    <ul wx:for="{{mydata_woker}}" wx:key="id" wx:if="{{user_type!=2}}">
+      <li class="content_list_li" bind:tap="goto_orderDeliver">{{item.name}}</li>
+    </ul>
+    <!-- 管理员额外显示的 -->
+    <text class="content_list_li" bindtap="goto_manage" wx:if="{{user_type==9}}">管理</text>
     <text class="content_list_li" bindtap="goto_about">关于</text>
   </view>
 </view>

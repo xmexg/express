@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+### 配置文件 ###
+前端/wk快递帮/project.config.json

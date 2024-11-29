@@ -5,12 +5,12 @@
 </view>
 <view id="content">
   <view id="content_lay">
-    <view><text id="note">该小程序目前仅为测试使用,且填写的信息不会生效!</text><image class="content_lay_img" src="/static/image/indexpic/caution.png" mode="aspectFit"></image></view>
-    <view id="express" bindtap="btn_express">校园快递<image class="content_lay_img" src="/static/image/indexpic/express-delivery.png" mode="aspectFit"></image></view>
-    <view id="network" bindtap="btn_network">校园网<image class="content_lay_img" src="/static/image/indexpic/router-one.png" mode="aspectFit"></image></view>
+    <view><text id="note">该小程序仅用于结课作业演示！</text><image class="content_lay_img" src="/static/image/indexpic/caution.png" mode="aspectFit"></image></view>
+    <view><text id="note">由于无法申请商户号,该小程序没有支付功能！</text><image class="content_lay_img" src="/static/image/indexpic/caution.png" mode="aspectFit"></image></view>
+    <view wx:if="{{token}}" id="express" bindtap="btn_express">校园快递<image class="content_lay_img" src="/static/image/indexpic/express-delivery.png" mode="aspectFit"></image></view>
+    <!-- <view wx:if="{{token}}" id="network" bindtap="btn_network">校园网<image class="content_lay_img" src="/static/image/indexpic/router-one.png" mode="aspectFit"></image></view> -->
   </view>
-  <view id="wxloginwiew">
-      <!-- <text>微信条件渲染有问题</text> -->
+  <view wx:if="{{!token}}" id="wxloginwiew">
       <button id="wxloginbutton" type="default" form-type="submit" bindtap="loginBottonClick">微信登录</button>
   </view>
 </view>

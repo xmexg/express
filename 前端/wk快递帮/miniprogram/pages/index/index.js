@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    token: wx.getStorageSync("token"),
+    user_type: wx.getStorageSync("user_type")
   },
 
   btn_express(){
@@ -19,6 +21,7 @@ Page({
       url: '/pages/myserver/network_server/network_server',
     })
   },
+
   /**
    * 点击登录按钮时
    */
@@ -45,7 +48,7 @@ Page({
             fail(){
               wx.showToast({title:"登录失败",icon:"error"});
             },
-            complete(){
+            complete(){  
               console.log('登录后获取到的token：'+wx.getStorageSync('token'))
             }
           })
