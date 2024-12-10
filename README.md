@@ -45,7 +45,7 @@ CREATE TABLE `booking` (
   `ordertime` datetime DEFAULT NULL,
   `ordertype` tinyint(4) DEFAULT NULL,
   `orderpricecon` tinyint(4) DEFAULT NULL,
-  `orderamount` float DEFAULT NULL,
+  `orderamount` double DEFAULT NULL,
   `pickup` varchar(50) DEFAULT NULL,
   `pickdown` varchar(50) DEFAULT NULL,
   `pickcode` varchar(20) DEFAULT NULL,

@@ -1,9 +1,8 @@
 package org.xmexg.wkexpress.tempdata;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.xmexg.wkexpress.service.ExpresspointService;
-
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 这些数据在启动时加载,然后不变
@@ -43,4 +42,28 @@ public class TempData {
     public String Deliveryorder_Fail = "接单失败";
     public String Order_amount_error = "订单金额无效";
 
+    // jsp作业，识别码登录
+    public int IdCode_liveTime = 600000;  // 识别码有效时间,默认10分钟内有效
+    private record LoginIdCode_obj(String idCode, String token, Long time){}
+    private final ConcurrentHashMap<String, LoginIdCode_obj> login_IdCode = new ConcurrentHashMap<>();
+    public String makeLoginCode(String token) {
+        String idCode = UUID.randomUUID().toString().substring(0, 4); // 更安全的ID生成方式, 生成4位随机字符串
+        long nowTime = System.currentTimeMillis();
+        this.login_IdCode.forEach((k, v) -> { // 在生成识别码前清除过期的识别码
+            if (nowTime - v.time > this.IdCode_liveTime) {
+                this.login_IdCode.remove(k);
+            }
+        });
+        login_IdCode.put(idCode, new LoginIdCode_obj(idCode, token, nowTime));
+        return idCode;
+    }
+    public String getLoginToken(String code) {
+        LoginIdCode_obj obj = login_IdCode.get(code);
+        if (obj == null || System.currentTimeMillis() - obj.time > IdCode_liveTime) {
+            login_IdCode.remove(code);
+            return null;
+        }
+        login_IdCode.remove(code); // 使用一次后即移除
+        return obj.token;
+    }
 }

@@ -12,10 +12,11 @@
     <ul wx:for="{{mydata_user}}" wx:key="id">
       <li class="content_list_li" bind:tap="goto_orderBook">{{item.name}}</li>
     </ul>
-    <!-- 派送员额外显示的 -->
+    <!-- 派送员和管理员额外显示的 -->
     <ul wx:for="{{mydata_woker}}" wx:key="id" wx:if="{{user_type!=2}}">
       <li class="content_list_li" bind:tap="goto_orderDeliver">{{item.name}}</li>
     </ul>
+     <li class="content_list_li" wx:if="{{user_type!=2}}">创建登录码</li>
     <!-- 管理员额外显示的 -->
     <text class="content_list_li" bindtap="goto_manage" wx:if="{{user_type==9}}">管理</text>
     <text class="content_list_li" bindtap="goto_about">关于</text>
