@@ -14,7 +14,7 @@ public class Ordering {
     private Timestamp ordertime;
     private int ordertype;
     private int orderpricecon;
-    private String orderamount;
+    private double orderamount;
     private String pickup;
     private String pickdown;//需要检验合法性
     private String pickcode;//需要检验合法性
@@ -68,11 +68,11 @@ public class Ordering {
         this.orderpricecon = orderpricecon;
     }
 
-    public String getOrderamount() {
+    public double getOrderamount() {
         return orderamount;
     }
 
-    public void setOrderamount(String orderamount) {
+    public void setOrderamount(double orderamount) {
         this.orderamount = orderamount;
     }
 

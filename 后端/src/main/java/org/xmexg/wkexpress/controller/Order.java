@@ -58,7 +58,7 @@ public class Order {
         // 如果订单已支付，则退款
         Refund refund = new Refund("取消成功", "用户取消订单");
         if (ordering.getPaytime() != null) {
-            refund = new Refund("取消成功", "用户取消订单,已退款"+ordering.getOrderamount()+"元", Double.parseDouble(ordering.getOrderamount()));
+            refund = new Refund("取消成功", "用户取消订单,已退款"+ordering.getOrderamount()+"元", ordering.getOrderamount());
         }
         boolean cancel = orderingService.cancelOrder(orderid);
         return cancel ? responseModel.success(refund) : responseModel.fail("取消失败，请稍后重试");
@@ -241,7 +241,7 @@ public class Order {
         }
 
         //更新订单信息
-        if(order.getChangepriceable()==1) order.setOrderamount(String.valueOf(orderamount));
+        if(order.getChangepriceable()==1) order.setOrderamount(orderamount);
         order.setShipper(user.getUser_openid());
         order.setStatus(2);
         boolean updateok = orderingService.updateOrder(order);
