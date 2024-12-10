@@ -13,7 +13,7 @@ App<IAppOption>({
     if(token == ""){
       console.log("开始登录")
       wxLogin()
-    }    
+    }
   },
   
 })
@@ -33,9 +33,11 @@ function wxLogin(){
           success(res){
             const strres = JSON.stringify(res.data)
             const arr = JSON.parse(strres)
-            wx.setStorageSync("token", arr.user_token);
-            wx.setStorageSync("user_id", arr.user_id);
+            console.log("获取用户信息：", arr)
+            wx.setStorageSync("token", arr.user_token)
+            wx.setStorageSync("user_id", arr.user_id)
             wx.setStorageSync("user_type", arr.user_type)
+            wx.setStorageSync("user_openid", arr.user_openid)
           },
           fail(){
             wx.showToast({title:"登录失败",icon:"error"});

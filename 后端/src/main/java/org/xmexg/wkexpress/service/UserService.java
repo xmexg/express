@@ -30,7 +30,6 @@ public class UserService {
 
     /**
      * 获取用户信息,包含用户id(user_id),用户类型(user_type),用户令牌(user_token)
-     * openid内容是不会发送给前端的,只有session_key会发送给前端
      * 用户没有注册,则通过code注册,返回json用户信息
      * 用户已经注册,则检查信息是否正确,并返回json用户信息
      */
@@ -63,7 +62,7 @@ public class UserService {
             user.setUser_type(2);//默认为普通用户
             user.setUser_token(RandomCreate.createToken());
             int userid = userDao.addUser(user);//添加用户后会返回主键,即用户id
-            return "{\"user_id\":"+userid+",\"user_type\":"+user.getUser_type()+",\"user_token\":\""+user.getUser_token()+"\"}";
+            return "{\"user_id\":"+userid+",\"user_type\":"+user.getUser_type()+",\"user_token\":\""+user.getUser_token()+"\",\"user_openid\":\""+user.getUser_openid()+"\"}";
         }else {
             //用户已经注册,则检查信息是否正确,并返回用户信息
             if(!user.getUser_session_key().equals(wx_session_key)){
@@ -71,7 +70,7 @@ public class UserService {
                 user.setUser_session_key(wx_session_key);
                 userDao.updateSessionKey(user);
             }
-            return "{\"user_id\":"+user.getUser_id()+",\"user_type\":"+user.getUser_type()+",\"user_token\":\""+user.getUser_token()+"\"}";
+            return "{\"user_id\":"+user.getUser_id()+",\"user_type\":"+user.getUser_type()+",\"user_token\":\""+user.getUser_token()+"\",\"user_openid\":\""+user.getUser_openid()+"\"}";
         }
     }
 

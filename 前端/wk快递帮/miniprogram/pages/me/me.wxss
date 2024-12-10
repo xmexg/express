@@ -51,3 +51,38 @@
   background: #f0fbff;
   border-radius: 10px;
 }
+
+#LoginIdCode_div{
+  z-index: 9;
+  display: block;
+  position: fixed;
+  top: 30%;
+  margin: 30px;
+  padding: 30px;
+  border-radius: 10px;
+  background: rgba(210, 236, 245, 0.5);
+  backdrop-filter: blur(1px);
+  border: #00aeec solid 1px;
+}
+
+#LoginIdCode_div>view{
+  margin: 10px 0;
+}
+
+#LoginIdCode_title{
+  width: 100%;
+  text-align: center;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+#LoginIdCode_text{
+  color: #1c5a70;
+  font-size: 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+#LoginIdCode_btn{
+  background: #00aeec;
+}

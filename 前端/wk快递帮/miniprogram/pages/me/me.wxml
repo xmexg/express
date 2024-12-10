@@ -16,9 +16,15 @@
     <ul wx:for="{{mydata_woker}}" wx:key="id" wx:if="{{user_type!=2}}">
       <li class="content_list_li" bind:tap="goto_orderDeliver">{{item.name}}</li>
     </ul>
-     <li class="content_list_li" wx:if="{{user_type!=2}}">创建登录码</li>
+    <li class="content_list_li" wx:if="{{user_type!=2}}" bind:tap="make_LoginIdCode">浏览器登录</li>
     <!-- 管理员额外显示的 -->
     <text class="content_list_li" bindtap="goto_manage" wx:if="{{user_type==9}}">管理</text>
     <text class="content_list_li" bindtap="goto_about">关于</text>
+  </view>
+  <view id="LoginIdCode_div" wx:if="{{LoginIdCode}}">
+    <view id="LoginIdCode_title">登录码</view>
+    <view>你可在网页端{{idCode_liveTime/1000}}秒内使用下方登录码登录你的账号</view>
+    <view id="LoginIdCode_text">{{LoginIdCode}}</view>
+    <button id="LoginIdCode_btn" bind:tap="LoginIdCode_btn">确定</button>
   </view>
 </view>

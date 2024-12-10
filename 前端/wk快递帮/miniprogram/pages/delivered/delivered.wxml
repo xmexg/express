@@ -12,7 +12,7 @@
           <view>From: {{item.pickup}}</view>
           <view>To: {{item.pickdown}}</view>
           <view>下单时间:{{item.ordertime_text}}</view>
-          <view>价格:{{item.orderamount}}</view>
+          <view>价格: {{item.orderamount}} (元)</view>
           <view>支付时间:{{item.paytime_text}}</view>
           <view>备注:{{item.note}}</view>
           <button wx:if="{{item.status<10}}" type="warn" data-orderid="{{item.orderid}}" bindtap="order_cancel">取消派送</button>

@@ -17,7 +17,9 @@ Page({
     mydata_woker: [
       { name: "派送中", value: "0", id: "3"},
       { name: "已派送", value: "0", id: "4"}
-    ]
+    ],
+    idCode_liveTime: 120000,
+    LoginIdCode: ''
   },
 
   /**
@@ -38,6 +40,7 @@ Page({
    */
   onShow() {
     this.get_barStatus()
+    this.get_idCode_liveTime()
   },
 
   /**
@@ -58,6 +61,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
+    this.get_idCode_liveTime()
     // 重新获取用户信息
     this.get_userInfo()
     this.get_barStatus()
@@ -203,5 +207,50 @@ Page({
         }
       }
     })
+  },
+
+  /**
+   * 获取识别码有效时间（毫秒） 
+   */
+  get_idCode_liveTime(){
+    let that = this
+    wx.request({
+      method: 'POST',
+      url: getApp().globalData.serverip+'/webControl/get_idCode_liveTime',
+      success(res){
+        console.log('获取登录码有效时长', res)
+        if(res.data.code==200){
+          that.setData({'idCode_liveTime': res.data.data})
+        }
+      }
+    })
+  },
+
+  /**
+   * 创建登录码
+   */
+  make_LoginIdCode(){
+    let that = this
+    wx.request({
+      method: 'POST',
+      url: getApp().globalData.serverip+'/webControl/get_idCode',
+      header: {token: wx.getStorageSync('token')},
+      success(res){
+        console.log(res)
+        if(res.data.code==200) that.setData({'LoginIdCode': res.data.data})
+        else if(res.data.message) that.setData({'LoginIdCode': res.data.message})
+        else that.setData({'LoginIdCode': '获取登录码失败'})
+      },
+      fail(res){
+        that.setData({'LoginIdCode': '无法连接服务器'})
+      }
+    })
+  },
+
+  /**
+   * 点击登录码确定按钮
+   */
+  LoginIdCode_btn(){
+    this.setData({'LoginIdCode': ''})
   }
 })

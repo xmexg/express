@@ -23,6 +23,14 @@ public class WebControl {
     ResponseModel responseModel;
 
     /**
+     * 获取识别码有效时间
+     */
+    @PostMapping("/get_idCode_liveTime")
+    public String getIdCodeLiveTime() {
+        return responseModel.success(WkexpressApplication.tempData.IdCode_liveTime);
+    }
+
+    /**
      * 生成识别码
      */
     @PostMapping("/get_idCode")
