@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <!-- 配置全局环境变量 -->
+<!-- 校园快递服务端地址 -->
+    <context-param>
+        <param-name>expressServer</param-name>
+        <param-value>127.0.0.1:8081</param-value>
+    </context-param>
+<!-- 随机壁纸资源位置，若不配置，默认为/res/bg -->
+    <context-param>
+        <param-name>imageDir</param-name>
+        <param-value>/res/bg</param-value>
+    </context-param>
+
+</web-app>

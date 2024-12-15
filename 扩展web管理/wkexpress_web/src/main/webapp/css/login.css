@@ -1,0 +1,117 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 130vw;
+    min-height: 130vh;
+    border: #007bff solid 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("../extend/randomPic");
+    transform-style: preserve-3d;
+}
+
+#login_div {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+    text-align: center;
+    padding: 1px;
+    transform: translate(-50%, -50%) translateZ(400px);
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+
+#login_content{
+    background-color: rgba(255, 255, 255, 0.1);
+    position: relative;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+#login_content h1 {
+    color: #5352ed;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#login_content p{
+    color: #529eed;
+}
+
+#input_div {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#input_label {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transition: 0.5s;
+    pointer-events: none;
+    color: #529eed;
+    font-size: 1em;
+}
+
+#login_code {
+    width: 100%;
+    border: none;
+    outline:none;
+    border-bottom: 1px solid #0929c3;
+    font-size: 1em;
+    background: linear-gradient(90deg,#1febdaac, #0929c3);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; /* 确保文本颜色透明，展示背景渐变 */
+    text-align: center;
+    letter-spacing: 1rem;
+}
+
+.login_input:focus ~ .login_label,
+.login_input:hover ~ .login_label,
+.login_input:valid ~ .login_label {
+    transform: scale(0.7) translateY(-100%) translateX(-10px);
+}
+
+#input_img{
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 10%;
+    height: 70%;
+}
+
+#login_content button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #007bff;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+#login_content button:hover {
+    background-color: #3371b6;
+}
+
+#login_content button:active {
+    background-color: #0056b3;
+}

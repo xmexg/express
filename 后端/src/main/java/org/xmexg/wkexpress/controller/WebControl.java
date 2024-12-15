@@ -1,5 +1,6 @@
 package org.xmexg.wkexpress.controller;
 
+import com.alibaba.fastjson2.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.xmexg.wkexpress.WkexpressApplication;
@@ -46,10 +47,14 @@ public class WebControl {
      * 通过识别码登录
      */
     @PostMapping("/login_by_idCode")
-    public String loginByIdCode(@RequestBody String idCode) {
+    public String loginByIdCode(@RequestBody String idCode_json) {
+        System.out.println("收到登录码数据: "+idCode_json);
+        if (idCode_json == null || idCode_json.isEmpty()) return responseModel.fail("参数错误");
+        String idCode = JSON.parseObject(idCode_json).getString("idCode");
+        System.out.println("idCode: "+idCode);
         if (idCode == null || idCode.isEmpty()) return responseModel.fail("参数错误");
         String token = WkexpressApplication.tempData.getLoginToken(idCode);
-        if (token == null) return responseModel.fail("识别码错误");
+        if (token == null) return responseModel.fail("识别码无效");
         return responseModel.success(token);
     }
 

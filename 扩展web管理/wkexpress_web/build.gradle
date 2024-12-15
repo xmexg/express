@@ -1,0 +1,64 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '2.0.20'
+    id 'war'
+}
+
+group 'org.looom'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.11.0'
+}
+
+sourceCompatibility = '22'
+targetCompatibility = '22'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+[compileKotlin, compileTestKotlin].forEach {
+    it.kotlinOptions {
+        jvmTarget = '22'
+    }
+}
+
+
+dependencies {
+    compileOnly('jakarta.json:jakarta.json-api:2.1.3')
+    compileOnly('jakarta.mvc:jakarta.mvc-api:2.1.0')
+    compileOnly('jakarta.servlet:jakarta.servlet-api:6.1.0')
+    compileOnly('jakarta.websocket:jakarta.websocket-api:2.2.0')
+
+    // 操作数据库
+    implementation 'com.baomidou:mybatis-plus:3.5.9'
+    implementation group: 'com.mysql', name: 'mysql-connector-j', version: '9.1.0'
+    // 提供数据库连接池
+    implementation group: 'com.zaxxer', name: 'HikariCP', version: '6.2.1'
+
+    // 使用日志
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '3.0.0-beta2'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '3.0.0-beta2'
+
+    // 使用 @Getter 和 @Setter 注解
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+    // fastjson
+    implementation group: 'com.alibaba.fastjson2', name: 'fastjson2', version: '2.0.53'
+
+    // 网络请求库
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '5.0.0-alpha.14'
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}
