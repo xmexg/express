@@ -18,6 +18,9 @@ function do_login(){
             } else {
                 alert(data.message);
             }
+        },
+        fail: function (res) {
+            alert("连接异常, 请稍后重试")
         }
     });
 }

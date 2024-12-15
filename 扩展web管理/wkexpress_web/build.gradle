@@ -36,7 +36,12 @@ dependencies {
     compileOnly('jakarta.websocket:jakarta.websocket-api:2.2.0')
 
     // 操作数据库
-    implementation 'com.baomidou:mybatis-plus:3.5.9'
+//    implementation 'com.baomidou:mybatis-plus:3.5.9'
+//    // 在mybatis-plus 3.5.9+,jdk 11+ 中,PaginationInnerInterceptor依赖以下包, 参考https://baomidou.com/getting-started/install/#maven-bom
+//    implementation 'com.baomidou:mybatis-plus-jsqlparser:3.5.9'
+    // mybatis
+    implementation 'org.mybatis:mybatis:3.5.17'
+    // mysql连接器
     implementation group: 'com.mysql', name: 'mysql-connector-j', version: '9.1.0'
     // 提供数据库连接池
     implementation group: 'com.zaxxer', name: 'HikariCP', version: '6.2.1'

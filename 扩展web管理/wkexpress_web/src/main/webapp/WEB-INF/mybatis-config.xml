@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--    配置实体类和dao类位置-->
+    <typeAliases>
+        <package name="org.looom.wkexpress_web.entity"/>
+    </typeAliases>
+    <mappers>
+        <package name="org.looom.wkexpress_web.mapper"/>
+    </mappers>
+</configuration>

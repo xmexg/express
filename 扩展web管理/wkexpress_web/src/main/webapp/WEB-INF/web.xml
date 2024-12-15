@@ -15,5 +15,33 @@
         <param-name>imageDir</param-name>
         <param-value>/res/bg</param-value>
     </context-param>
+    
+    
+<!--    配置数据库和主服务器的数据库对应 https://github.com/xmexg/express/blob/main/%E5%90%8E%E7%AB%AF/src/main/resources/application.properties -->
+    <context-param>
+        <param-name>spring.datasource.url</param-name>
+        <param-value>jdbc:mysql://124.220.82.47:3306/schoolexpress?characterEncoding=utf-8&amp;serverTimezone=UTC&amp;useSSL=false&amp;nullCatalogMeansCurrent=true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>spring.datasource.username</param-name>
+        <param-value>schoolexpress</param-value>
+    </context-param>
+    <context-param>
+        <param-name>spring.datasource.password</param-name>
+        <param-value>schoolexpresspassword</param-value>
+    </context-param>
+    <context-param>
+        <param-name>spring.datasource.driverClassName</param-name>
+        <param-value>com.mysql.cj.jdbc.Driver</param-value>
+    </context-param>
 
+    <!-- 配置监听器 -->
+<!--    日志相关的 -->
+    <listener>
+        <listener-class>org.looom.wkexpress_web.util.Log4jUtils</listener-class>
+    </listener>
+<!--    数据库/池 相关的 -->
+    <listener>
+        <listener-class>org.looom.wkexpress_web.util.MyBatisUtilsBridge</listener-class>
+    </listener>
 </web-app>

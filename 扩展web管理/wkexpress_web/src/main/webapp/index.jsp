@@ -5,10 +5,14 @@
     <title>校园快递后台管理</title>
     <style>
         body{
+            width: 100vw;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-content: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -36,5 +40,11 @@
     if (token == null || token === "") {
         window.location.href = "login.html";
     }
+
+    // 5秒后刷新当前页面
+    setTimeout(() => {
+        location.reload();
+    }, 5000);
+
 </script>
 </html>
