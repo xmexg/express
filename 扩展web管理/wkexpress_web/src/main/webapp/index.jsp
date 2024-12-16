@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>校园快递后台管理</title>
+    <link rel="icon" type="image/svg+xml" href="res/logo.svg">
+    <title>路由 - 校园快递</title>
     <style>
         body{
             width: 100vw;
