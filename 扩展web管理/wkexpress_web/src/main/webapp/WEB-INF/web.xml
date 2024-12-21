@@ -35,6 +35,13 @@
         <param-value>com.mysql.cj.jdbc.Driver</param-value>
     </context-param>
 
+<!--    配置运行时环境变量env相关的 -->
+<!--    web_ui 目录名 ，现阶段有traditional和express_ui两个取值，traditional是jsp作业的ui -->
+    <context-param>
+        <param-name>web_ui</param-name>
+        <param-value>traditional</param-value>
+    </context-param>
+
     <!-- 配置监听器 -->
 <!--    日志相关的 -->
     <listener>
@@ -44,4 +51,8 @@
     <listener>
         <listener-class>org.looom.wkexpress_web.util.MyBatisUtilsBridge</listener-class>
     </listener>
+<!--    配置运行时变量器 -->
+<!--    <listener>-->
+<!--        <listener-class>org.looom.wkexpress_web.util.EnvUtilsBridge</listener-class>-->
+<!--    </listener>-->
 </web-app>

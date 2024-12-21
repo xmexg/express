@@ -1,5 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html lang="zh">
     <head>
         <title>登录 - 快递管理</title>
         <meta charset="UTF-8">
@@ -23,7 +24,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </body>
     <script src="js/vanilla-tilt.min.js" defer></script>

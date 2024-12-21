@@ -6,11 +6,8 @@ import jakarta.servlet.http.HttpServlet
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 
-/**
- * 首页跳转
- */
-@WebServlet("/index")
-class Index : HttpServlet() {
+@WebServlet("/login")
+class login : HttpServlet() {
 
     override fun init(conf: ServletConfig) {
         super.init(conf)
@@ -21,6 +18,6 @@ class Index : HttpServlet() {
     }
 
     override fun doGet(req: HttpServletRequest?, resp: HttpServletResponse?) {
-        resp?.sendRedirect("index.jsp")
+        resp?.sendRedirect("login.jsp")
     }
 }

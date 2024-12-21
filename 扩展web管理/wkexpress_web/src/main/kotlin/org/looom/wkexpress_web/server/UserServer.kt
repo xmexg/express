@@ -14,5 +14,7 @@ class UserServer {
         val user_mapper = MyBatisUtils.getSession().getMapper(UserMapper::class.java)
 
         fun getAllUser(): List<User>? = user_mapper.getAllUsers()
+
+        fun getUser(token: String?): User? = token?.let { user_mapper.getUser(it) }
     }
 }

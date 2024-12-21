@@ -35,3 +35,6 @@ build/
 
 ### 配置文件 ###
 前端/wk快递帮/project.config.json
+
+### node模块 ###
+扩展web管理/wkexpress_web/src/main/webapp/express_ui/node_modules/

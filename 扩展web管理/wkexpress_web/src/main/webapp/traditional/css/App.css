@@ -1,0 +1,89 @@
+/**
+ * App.jsp 的样式表
+ */
+.full-screen {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.top{
+    background: #2f4050;
+}
+
+.top_ul{
+    display: flex;
+    list-style-type: none;
+    justify-content: end;
+    padding: 0;
+    margin: 0;
+}
+
+.top_ul li{
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.top_ul li a{
+    text-decoration: none;
+    color: #f3f3f3;
+}
+
+.bodyCon{
+    display: flex;
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    flex-direction: row;
+}
+
+.left{
+    display: flex;
+    left: 0;
+    flex-direction: column;
+    width: 100px;
+    height: 100%;
+    background: #466078;
+}
+
+.left a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px 0;
+    margin: 10px 0;
+    color: #f3f3f3;
+    text-align: center;
+}
+
+.left a:hover{
+    background: #274866;
+}
+
+.left a:active{
+    background: #1a3045;
+}
+
+.left a img{
+    width: 50%;
+}
+
+.hw{
+    display: flex;
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    background: #f3f3f3;
+}
+
+.hw iframe{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}

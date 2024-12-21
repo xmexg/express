@@ -9,16 +9,17 @@ import java.sql.Date;
 public class User {
 
     //user_id是主键,自增
-    private int user_id; //用户id
     @Setter
-    private int user_type; //用户类型,9:管理员,1:配送员,2:用户,3:黑名单
+    public int user_id; //用户id
     @Setter
-    private String user_session_key; //微信session_key
+    public int user_type; //用户类型,9:管理员,1:配送员,2:用户,3:黑名单
     @Setter
-    private String user_openid; //微信openid
+    public String user_session_key; //微信session_key
     @Setter
-    private String user_token; //用户的token
+    public String user_openid; //微信openid
     @Setter
-    private Date user_creattime; //用户注册时间
+    public String user_token; //用户的token
+    @Setter
+    public Date user_creattime; //用户注册时间
 
 }

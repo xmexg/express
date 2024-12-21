@@ -85,7 +85,7 @@ public class UserService {
     }
 
     //前端获取code,在这里通过code获取openid和session_key
-    private String jscode2session(String code){
+    private String jscode2session(String code) {
         if(code == null || code.length() == 0){
             return null;
         }
