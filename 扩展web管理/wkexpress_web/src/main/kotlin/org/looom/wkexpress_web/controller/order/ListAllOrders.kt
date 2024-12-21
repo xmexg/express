@@ -1,28 +1,25 @@
-package org.looom.wkexpress_web.controller.user
+package org.looom.wkexpress_web.controller.order
 
 import jakarta.servlet.annotation.WebServlet
 import jakarta.servlet.http.HttpServlet
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.looom.wkexpress_web.server.AuthenticateServer
-import org.looom.wkexpress_web.server.UserServer
+import org.looom.wkexpress_web.server.OrderServer
 import org.looom.wkexpress_web.util.FilterCookie
 import org.looom.wkexpress_web.util.ResponseModel
 
-/**
- * 用户相关 - 获取所有用户
- */
-@WebServlet("/user/listAllUsers")
-class ListAllUsers : HttpServlet(){
+@WebServlet("/order/ListAllOrders")
+class ListAllOrders : HttpServlet() {
 
-    override fun doPost(req: HttpServletRequest?, resp: HttpServletResponse?) {
+    override fun doGet(req: HttpServletRequest?, resp: HttpServletResponse?) {
         if (req == null || resp == null) return
         val authentication = AuthenticateServer.isManager(FilterCookie.getToken(req))
         if (!authentication) return resp.writer.write(ResponseModel.fail("鉴权失败"))
-        return resp.writer.write(ResponseModel.success(UserServer.getAllUser()))
+        resp.writer.write(ResponseModel.success(OrderServer.getAllOrders()))
     }
 
-    override fun doGet(req: HttpServletRequest?, resp: HttpServletResponse?) {
-        doPost(req, resp)
+    override fun doPost(req: HttpServletRequest?, resp: HttpServletResponse?) {
+        doGet(req, resp)
     }
 }

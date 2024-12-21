@@ -17,7 +17,7 @@
             <div class="top">
                 <ul class="top_ul">
                     <li><a href="https://github.com/xmexg/express">项目地址</a></li>
-                    <li><a>{{openid}}</a></li>
+                    <li><a>openid: {{openid}}</a></li>
                 </ul>
             </div>
             <div class="bodyCon">

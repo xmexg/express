@@ -15,6 +15,7 @@ class AuthenticateServer {
 
         fun isCourier(token: String?): Boolean = token!=null && user_mapper.getUser(token)?.user_type== COURIER
         fun isUSER(token: String?): Boolean = token!=null && user_mapper.getUser(token)?.user_type== USER
-        fun isMANAGER(token: String?): Boolean = token!=null && user_mapper.getUser(token)?.user_type== MANAGER
+        fun isManager(token: String?): Boolean = token!=null && user_mapper.getUser(token)?.user_type== MANAGER
+        fun isCourierORManager(token: String?): Boolean = isCourier(token) || isManager(token)
     }
 }
