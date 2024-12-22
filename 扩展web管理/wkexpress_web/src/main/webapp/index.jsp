@@ -39,7 +39,7 @@
     // 检测cookie，如果token为空，跳转到login
     const token = getCookieValue("token");
     if (token == null || token === "") {
-        window.location.href = "../login";
+        window.location.href = "login";
     } else {
         // 如果token不为空，跳转到网页管理页
         window.location.href = "web_ui";
