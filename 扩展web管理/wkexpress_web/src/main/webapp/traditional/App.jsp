@@ -46,8 +46,8 @@
                         currentPath: window.location.hash || '#content_about', // 默认加载 "关于" 页面
                         routes: {
                             content_about: '<jsp:getProperty name="env" property="webUi_resPath"/>content/about.jsp',
-                            content_yjfk_forCourier: '<jsp:getProperty name="env" property="webUi_resPath"/>content/yjfk_forCourier.jsp',
-                            content_yjfk_forManager: '<jsp:getProperty name="env" property="webUi_resPath"/>content/yjfk_forManager.jsp',  // 关于页面
+                            content_yjfk_forCourier: '<jsp:getProperty name="env" property="webUi_resPath"/>content/yjfk_forCourier.html',
+                            content_yjfk_forManager: '<jsp:getProperty name="env" property="webUi_resPath"/>content/yjfk_forManager.html',  // 关于页面
                             content_manager: '<jsp:getProperty name="env" property="webUi_resPath"/>content/manager.jsp',  // 管理员页面
                             content_courier: '<jsp:getProperty name="env" property="webUi_resPath"/>content/courier.jsp',  // 派送员页面
                             p404: '<jsp:getProperty name="env" property="webUi_resPath"/>content/404.jsp'  // 404 页面

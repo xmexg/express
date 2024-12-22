@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理员意见反馈</title>
+    <link rel="icon" href="../res/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../css/element-plus.css">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/vue.global.js"></script>
+    <script src="../js/element-plus.js"></script>
+    <script src="../js/element-plus-icon-vue.js"></script>
+    <link rel="stylesheet" href="../css/yjfk_forCourier.css">
+    <style>
+        /* 弹窗背景 */
+        .modal-overlay {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 弹窗内容 */
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 40%;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .modal-footer button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!-- 发表反馈表单 -->
+    <el-card class="box-card" style="margin-bottom: 20px;">
+        <div slot="header" class="clearfix">
+            <span>发表意见反馈</span>
+        </div>
+        <el-input v-model="newFeedbackContent" placeholder="请输入您的意见..." rows="4"></el-input>
+        <el-button type="primary" @click="submitFeedback" style="margin-top: 10px;">提交反馈</el-button>
+        <el-button type="primary" @click="get_FeedbackList" style="margin-top: 10px;">刷新反馈</el-button>
+    </el-card>
+
+    <!-- 显示反馈列表 -->
+    <el-card v-for="feedback in feedbackList" :key="feedback.id" class="box-card" style="margin-bottom: 20px;">
+        <div slot="header" class="clearfix">
+            <span>{{ feedback.isAdmin ? '管理员' : '用户' }}: {{ feedback.openid }}</span>
+            <span class="time"> 时间: {{ formatTimestamp(feedback.created_at) }}</span>
+        </div>
+        <div v-html="feedback.content"></div>
+
+        <!-- 回复按钮 -->
+        <el-button type="text" @click="openReplyDialog(feedback.id)" style="margin-top: 10px;">回复</el-button>
+
+        <!-- 子反馈列表 -->
+        <div v-if="feedback.children.length > 0" style="margin-left: 20px;">
+            <el-card v-for="child in feedback.children" :key="child.id" class="box-card" style="margin-bottom: 10px;">
+                <div slot="header" class="clearfix">
+                    <span>{{ child.isAdmin ? '管理员' : '用户' }}: {{ child.openid }}</span>
+                    <span class="time"> 时间: {{ formatTimestamp(child.created_at) }}</span>
+                </div>
+                <div v-html="child.content"></div>
+            </el-card>
+        </div>
+    </el-card>
+
+    <!-- 回复弹窗 -->
+    <div v-if="dialogVisible" class="modal-overlay" @click.self="closeReplyDialog">
+        <div class="modal-content">
+            <h3>回复帖子</h3>
+            <el-input v-model="replyContent" placeholder="请输入回复内容" rows="4"></el-input>
+            <div class="modal-footer">
+                <el-button @click="closeReplyDialog">取消</el-button>
+                <el-button type="primary" @click="submitReply">提交回复</el-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    const { createApp } = Vue;
+
+    createApp({
+        data() {
+            return {
+                feedbackList: [{
+                    id: 1,
+                    openid: 41002,
+                    isAdmin: false,
+                    parent_id: null,  // parent_id为空是主题帖
+                    content: '主题帖',
+                    created_at: 1734855338537,
+                    children: [{
+                        id: 3,
+                        openid: 41002,
+                        isAdmin: false,
+                        parent_id: 1,
+                        content: '主题帖的子贴',
+                        created_at: 1734855338538,
+                        children: []
+                    }]
+                }],
+                newFeedbackContent: '',  // 存储用户输入的反馈内容
+                dialogVisible: false,  // 控制回复弹窗的显示
+                replyContent: '',  // 存储回复的内容
+                parentFeedbackId: null,  // 当前回复的主题帖id
+            };
+        },
+        beforeMount() {
+            this.get_FeedbackList();  // 获取反馈列表
+        },
+        methods: {
+            formatTimestamp(timestamp) {
+                const date = new Date(timestamp);
+                return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`;
+            },
+            submitFeedback() {
+                if (!this.newFeedbackContent.trim()) {
+                    this.$message.error('反馈内容不能为空');
+                    return;
+                }
+                $.ajax({
+                    url: '../../feedback/createFeedback',
+                    type: 'POST',
+                    data: {
+                        content: this.newFeedbackContent,
+                        parent_id: null,  // 如果是主题帖，可以传入null
+                    },
+                    success: (data) => {
+                        data = JSON.parse(data);
+                        if (data.code === 200) {
+                            this.feedbackList.push(data.data);  // 更新反馈列表
+                            this.newFeedbackContent = '';  // 清空输入框
+                            this.$message.success('反馈提交成功');
+                        } else {
+                            this.$message.error('提交反馈失败');
+                        }
+                    },
+                    fail: (data) => {
+                        this.$message.error('提交反馈失败: ' + data);
+                    }
+                });
+            },
+            get_FeedbackList() {
+                $.ajax({
+                    url: '../../feedback/getAllFeedbacks',
+                    type: 'POST',
+                    success: (data) => {
+                        let resdata = JSON.parse(data);
+                        if (resdata.code == 200) {
+                            this.feedbackList = resdata.data['feedbacks'];  // 更新反馈列表
+                        } else {
+                            this.$message.error('获取反馈失败');
+                        }
+                    },
+                    fail: (data) => {
+                        this.$message.error('获取反馈失败: ' + data);
+                    }
+                });
+            },
+            openReplyDialog(feedbackId) {
+                console.log("点击了回复按钮", feedbackId);
+                this.parentFeedbackId = feedbackId;  // 设置要回复的帖子ID
+                this.dialogVisible = true;  // 打开弹窗
+            },
+            closeReplyDialog() {
+                this.dialogVisible = false;  // 关闭弹窗
+                this.replyContent = '';  // 清空回复内容
+            },
+            submitReply() {
+                let that = this
+                if (!this.replyContent.trim()) {
+                    this.$message.error('回复内容不能为空');
+                    return;
+                }
+                $.ajax({
+                    url: '../../feedback/createFeedback',
+                    type: 'POST',
+                    data: {
+                        content: this.replyContent,
+                        parent_id: this.parentFeedbackId,  // 设置parent_id为当前回复的主题帖ID
+                    },
+                    success: (data) => {
+                        data = JSON.parse(data);
+                        if (data.code === 200) {
+                            // 找到对应的反馈并更新子帖
+                            const feedback = this.feedbackList.find(fb => fb.id === this.parentFeedbackId);
+                            feedback.children.push(data.data);
+                            this.closeReplyDialog();  // 关闭弹窗
+                            this.$message.success('回复提交成功');
+                            that.get_FeedbackList()
+                        } else {
+                            this.$message.error('回复提交失败');
+                        }
+                    },
+                    fail: (data) => {
+                        this.$message.error('回复提交失败: ' + data);
+                    }
+                });
+            }
+        }
+    }).use(ElementPlus).mount('#app');
+</script>
+</body>
+</html>

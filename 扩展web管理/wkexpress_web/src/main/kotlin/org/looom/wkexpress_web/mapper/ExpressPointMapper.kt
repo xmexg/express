@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Delete
 import org.apache.ibatis.annotations.Insert
 import org.apache.ibatis.annotations.Select
 
-interface ExpressPoint {
+interface ExpressPointMapper {
 
     @Select("SELECT * FROM expresspoint")
     fun getAllPoints(): List<String>?

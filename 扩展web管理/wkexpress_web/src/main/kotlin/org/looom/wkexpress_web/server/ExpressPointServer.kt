@@ -1,17 +1,17 @@
 package org.looom.wkexpress_web.server
 
-import org.looom.wkexpress_web.mapper.ExpressPoint
+import org.looom.wkexpress_web.mapper.ExpressPointMapper
 import org.looom.wkexpress_web.util.MyBatisUtils
 
 class ExpressPointServer {
     companion object{
-        val expressPoint = MyBatisUtils.getSession().getMapper(ExpressPoint::class.java)
+        val expressPointMapper = MyBatisUtils.getSession().getMapper(ExpressPointMapper::class.java)
 
-        fun getAllPoints(): List<String>? = expressPoint.getAllPoints()
+        fun getAllPoints(): List<String>? = expressPointMapper.getAllPoints()
 
-        fun deleteAllPoints(): Boolean = expressPoint.deleteAllPoints()
+        fun deleteAllPoints(): Boolean = expressPointMapper.deleteAllPoints()
 
-        fun insertPoint(point: String): Boolean = expressPoint.insertPoint(point)
+        fun insertPoint(point: String): Boolean = expressPointMapper.insertPoint(point)
 
         fun resetPoint(list: List<String>?): Boolean {
             var status: Boolean
