@@ -12,6 +12,9 @@
     <script src="../js/element-plus-icon-vue.js"></script>
     <link rel="stylesheet" href="../css/yjfk_forCourier.css">
     <style>
+        #app{
+            padding-bottom: 50px;
+        }
         /* 弹窗背景 */
         .modal-overlay {
             display: flex;
@@ -124,12 +127,16 @@
         beforeMount() {
             this.get_FeedbackList();  // 获取反馈列表
         },
+        mounted() {
+            this.updateInterval = setInterval(() => this.get_FeedbackList(false), 1000); // 每秒调用一次
+        },
         methods: {
             formatTimestamp(timestamp) {
-                const date = new Date(timestamp);
+                const date = new Date(timestamp - 8 * 60 * 60 * 1000); // 调整时间戳慢 8 小时
                 return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`;
             },
             submitFeedback() {
+                let that = this
                 if (!this.newFeedbackContent.trim()) {
                     this.$message.error('反馈内容不能为空');
                     return;
@@ -142,21 +149,21 @@
                         parent_id: null,  // 如果是主题帖，可以传入null
                     },
                     success: (data) => {
-                        data = JSON.parse(data);
-                        if (data.code === 200) {
-                            this.feedbackList.push(data.data);  // 更新反馈列表
-                            this.newFeedbackContent = '';  // 清空输入框
+                        let resdata = JSON.parse(data);
+                        if (resdata.code == 200) {
+                            that.newFeedbackContent = '';  // 清空输入框
                             this.$message.success('反馈提交成功');
+                            that.get_FeedbackList()
                         } else {
-                            this.$message.error('提交反馈失败');
+                            this.$message.error('反馈提交失败');
                         }
                     },
                     fail: (data) => {
-                        this.$message.error('提交反馈失败: ' + data);
+                        this.$message.error('反馈提交失败: ' + data);
                     }
                 });
             },
-            get_FeedbackList() {
+            get_FeedbackList(echo = true) {
                 $.ajax({
                     url: '../../feedback/getAllFeedbacks',
                     type: 'POST',
@@ -164,8 +171,9 @@
                         let resdata = JSON.parse(data);
                         if (resdata.code == 200) {
                             this.feedbackList = resdata.data['feedbacks'];  // 更新反馈列表
+                            if(echo) this.$message.success('获取反馈成功');
                         } else {
-                            this.$message.error('获取反馈失败');
+                            if(echo) this.$message.error('获取反馈失败');
                         }
                     },
                     fail: (data) => {
@@ -197,19 +205,19 @@
                     },
                     success: (data) => {
                         data = JSON.parse(data);
-                        if (data.code === 200) {
+                        if (data.code == 200) {
                             // 找到对应的反馈并更新子帖
                             const feedback = this.feedbackList.find(fb => fb.id === this.parentFeedbackId);
                             feedback.children.push(data.data);
                             this.closeReplyDialog();  // 关闭弹窗
-                            this.$message.success('回复提交成功');
+                            this.$message.success('评论提交成功');
                             that.get_FeedbackList()
                         } else {
-                            this.$message.error('回复提交失败');
+                            this.$message.error('评论提交失败');
                         }
                     },
                     fail: (data) => {
-                        this.$message.error('回复提交失败: ' + data);
+                        this.$message.error('评论提交失败: ' + data);
                     }
                 });
             }

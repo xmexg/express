@@ -52,7 +52,7 @@
             <el-table-column prop="status" label="订单状态"></el-table-column>
             <el-table-column prop="changepriceable" label="金额可变"></el-table-column>
         </el-table>
-        <el-button type="info" @click="get_AllOrders">刷新订单列表</el-button>
+        <el-button type="info" @click="get_MyOrders">刷新订单列表</el-button>
     </div>
 </div>
 </body>
@@ -89,10 +89,23 @@
                         data = JSON.parse(data);
                         if(data.code == 200) {
                             that.expressPointTag = data.data;
+                            that.$message({
+                                message: '获取快递点成功',
+                                type: 'success'
+                            });
+                        } else {
+                            that.$message({
+                                message: '获取快递点失败',
+                                type: 'error'
+                            });
                         }
                     },
                     fail: function (data) {
-                        confirm('获取快递点失败: ' + data);
+                        // confirm('获取快递点失败: ' + data);
+                        that.$message({
+                            message: '获取快递点失败',
+                            type: 'error'
+                        });
                         console.log(data);
                     }
                 });
@@ -107,10 +120,22 @@
                         data = JSON.parse(data);
                         if(data.code == 200) {
                             that.orderList = data.data;
+                            that.$message({
+                                message: '获取订单成功',
+                                type: 'success'
+                            });
+                        } else {
+                            that.$message({
+                                message: '获取订单失败',
+                                type: 'error'
+                            });
                         }
                     },
                     fail: function (data) {
-                        confirm('获取订单列表失败: ' + data);
+                        that.$message({
+                            message: '获取订单失败',
+                            type: 'error'
+                        });
                         console.log(data);
                     }
                 });

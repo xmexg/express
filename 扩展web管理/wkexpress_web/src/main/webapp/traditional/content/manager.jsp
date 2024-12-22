@@ -98,6 +98,7 @@
                 console.log(value);
             },
             set_ExpressPoint() {
+                let that=this
                 console.log('set_ExpressPoint');
                 $.ajax({
                     url: '../../expresspoint/setpoint',
@@ -105,14 +106,18 @@
                     data: JSON.stringify(this.expressPointTag),
                     success: function (data) {
                         data = JSON.parse(data);
-                        ElMessage({
-                            message: data.data,
-                            type: 'success',
-                        })
+                        that.$message({
+                            message: '设置快递点成功',
+                            type: 'success'
+                        });
+                        // confirm('设置快递点成功');
                         console.log(data);
                     },
                     fail: function (data) {
-                        confirm('设置快递点失败: ' + data);
+                        that.$message({
+                            message: '设置快递点失败',
+                            type: 'error'
+                        });
                         console.log(data);
                     }
                 });
@@ -128,10 +133,22 @@
                         data = JSON.parse(data);
                         if(data.code == 200) {
                             that.expressPointTag = data.data;
+                            that.$message({
+                                message: '获取快递点成功',
+                                type: 'success'
+                            });
+                        } else {
+                            that.$message({
+                                message: '获取快递点失败',
+                                type: 'error'
+                            });
                         }
                     },
                     fail: function (data) {
-                        confirm('获取快递点失败: ' + data);
+                        that.$message({
+                            message: '获取快递点失败',
+                            type: 'error'
+                        });
                         console.log(data);
                     }
                 });
@@ -146,10 +163,22 @@
                         data = JSON.parse(data);
                         if(data.code == 200) {
                             that.userList = data.data;
+                            that.$message({
+                                message: '获取用户列表',
+                                type: 'success'
+                            });
+                        } else {
+                            that.$message({
+                                message: '获取用户列表失败',
+                                type: 'error'
+                            });
                         }
                     },
                     fail: function (data) {
-                        confirm('获取用户列表失败: ' + data);
+                        that.$message({
+                            message: '获取用户列表失败',
+                            type: 'error'
+                        });
                         console.log(data);
                     }
                 });
@@ -164,10 +193,22 @@
                         data = JSON.parse(data);
                         if(data.code == 200) {
                             that.orderList = data.data;
+                            that.$message({
+                                message: '获取订单列表',
+                                type: 'success'
+                            });
+                        } else {
+                            that.$message({
+                                message: '获取订单列表失败',
+                                type: 'error'
+                            });
                         }
                     },
                     fail: function (data) {
-                        confirm('获取订单列表失败: ' + data);
+                        that.$message({
+                            message: '获取订单列表失败',
+                            type: 'error'
+                        });
                         console.log(data);
                     }
                 });
