@@ -24,7 +24,7 @@
 |![jsp登录](./image/jsp-10.png)|![jsp404](./image/jsp-11.png)|
 
 - 思维导图
-![思维导图.png](./image/思维导图.png)
+![导图.png](./image/思维导图.png)
 
 # 开始使用
 
